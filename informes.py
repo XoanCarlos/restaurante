@@ -4,7 +4,7 @@ import os
 import servicios
 import bbdd
 import locale
-
+import main
 
 """ Modulo generardor de documentos
 
@@ -142,6 +142,7 @@ def factura(idfactura):
         cser.save()
         dir = os.getcwd()
         os.system('/usr/bin/xdg-open ' + dir + '/' + str(idfactura) + '.pdf')
+
 
     except bbdd.sqlite3.OperationalError as e:
         print(e)

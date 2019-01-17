@@ -31,7 +31,7 @@ def cargarreserva(lblfac, lista, treefactura):
                 listres.append(model.get_value(iter, i))
                 if i == 0:
                     lblfac.set_text(str(listres[i]))
-                    var = listres[i]
+                    var = str(listres[i])
                 else:
                     lista[i-1].set_text(str(listres[i]))
         return var

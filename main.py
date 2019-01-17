@@ -322,6 +322,7 @@ class Restaurante():
             registro.set_text('')
 
     def mesa1(self, widget):
+
         libre = 0
         pagados = reservas.controlpagos(1)
 
@@ -352,11 +353,14 @@ class Restaurante():
             self.listfact.clear()
             for registro in listado:
                 self.listfact.append(registro)
+        self.limpiarfac()
 
 
     def mesa2(self, widget):
+
         libre = 0
         pagado2 = reservas.controlpagos(2)
+
         for registro in pagado2:
             if str(registro[0]) == 'NO' or registro == None:
                 libre = 1
@@ -371,7 +375,6 @@ class Restaurante():
         if self.reservas['mesa2'] == 0 and self.entclifac.get_text() != '' and self.entcamfac.get_text() != '' and libre == 0:
             self.entmesafac.set_text('2')
             self.entfechafac.set_text(self.hoy)
-
             color = Gdk.color_parse('#FA8072')
             rgba = Gdk.RGBA.from_color(color)
             self.btnmesa2.override_background_color(0, rgba)
@@ -380,6 +383,11 @@ class Restaurante():
                 datos.append(self.listareserva[i].get_text())
             datos.append('NO')
             reservas.crearreserva(datos, 2, self.listfact)
+            listado = reservas.mostrarfacturas(2)
+            self.listfact.clear()
+            for registro in listado:
+                self.listfact.append(registro)
+        self.limpiarfac()
 
     def cargarreserva(self, widget):
         self.idfactura = reservas.cargarreserva(self.lblfac, self.listareserva, self.treefacturas)
@@ -400,7 +408,7 @@ class Restaurante():
         cantidad = self.entcantidad.get_text()
         comanda.append(cantidad)
         reservas.grabarcomanda(comanda)
-        self.listarcomandas()
+        self.listarcomandas(idfac)
 
     def listarcomandas(self, idfactura):
         listado = reservas.listarcomandas(idfactura)
@@ -417,11 +425,13 @@ class Restaurante():
         rgba = Gdk.RGBA.from_color(color)
         self.mesas[self.mesaactiva-1].override_background_color(0, rgba)
         reservas.pagado(self.idfactura)
-        listado = reservas.mostrarfacturas(int(self.mesaactiva))
+        var = int(self.mesaactiva)
+        listado = reservas.mostrarfacturas(var)
         self.listfact.clear()
         for registro in listado:
             self.listfact.append(registro)
         self.anulareserva()
+        self.limpiarfac()
 
 
     def anulareserva(self):
@@ -441,9 +451,6 @@ class Restaurante():
             self.reservas['mesa7'] = '0'
         if self.mesaactiva == 8:
             self.reservas['mesa8'] = '0'
-
-
-
 
 
     """ funciones principales """
