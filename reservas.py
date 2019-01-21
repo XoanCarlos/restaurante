@@ -1,10 +1,10 @@
 import bbdd
 
-def crearreserva(datos, idmesa, listfact):
+def crearreserva(datos, idmesa):
     try:
         bbdd.cur.execute('insert into facturas (dnicli, idcam, idmesa, fecha, pagado ) values (?,?,?,?,?)', datos)
         bbdd.conexion.commit()
-        mostrarfacturas(idmesa, listfact)
+        mostrarfacturas(idmesa)
 
     except Exception as err:
         print(err)
@@ -22,18 +22,16 @@ def mostrarfacturas(idmesa):
         print(e)
         bbdd.conexion.rollback()
 
-def cargarreserva(lblfac, lista, treefactura):
+def cargarreserva(lista, treefactura):
     try:
         model, iter = treefactura.get_selection().get_selected()
         listres = []
-        if iter != None:
-            for i in range(6):
-                listres.append(model.get_value(iter, i))
-                if i == 0:
-                    lblfac.set_text(str(listres[i]))
-                    var = str(listres[i])
-                else:
-                    lista[i-1].set_text(str(listres[i]))
+        for j in range(6):
+            listres.append(model.get_value(iter, j))
+        for i in range(6):
+            if i == 0:
+                var = str(listres[i])
+            lista[i].set_text(str(listres[i]))
         return var
     except:
         print('error carga reservaaa')

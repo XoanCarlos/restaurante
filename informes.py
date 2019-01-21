@@ -4,7 +4,6 @@ import os
 import servicios
 import bbdd
 import locale
-import main
 
 """ Modulo generardor de documentos
 

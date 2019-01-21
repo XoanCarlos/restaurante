@@ -100,7 +100,7 @@ class Restaurante():
         self.liscmb = [ self.cmbprov, self.cmbmuni ]
         self.listacam = [ self.entcam, self.entpass, self.entpassr ]
         self.listamesa = [ self.entidmesa, self.entmesa ]
-        self.listareserva = [ self.entclifac, self.entcamfac, self.entmesafac, self.entfechafac, self.entpago ]
+        self.listareserva = [ self.lblfac, self.entclifac, self.entcamfac, self.entmesafac, self.entfechafac, self.entpago ]
 
         self.reservas = { 'mesa1': 0, 'mesa2': 0, 'mesa3': 0, 'mesa4' : 0, 'mesa5' : 0, 'mesa6' : 0, 'mesa6' : 0, 'mesa6' : 0, 'mesa7' : 0, 'mesa8': 0 }
         self.mesas = [ self.btnmesa1, self.btnmesa2, self.btnmesa3, self.btnmesa4, self.btnmesa5, self.btnmesa6, self.btnmesa7, self.btnmesa8 ]
@@ -184,7 +184,7 @@ class Restaurante():
         indexm = self.cmbmuni.get_active()
         modelm = self.cmbmuni.get_model()
         itemm = modelm[indexm][0]
-        self.liscmb =[ itemp, itemm]
+        self.liscmb =[ itemp, itemm ]
         for i in range(4):
             self.registrocli.append(self.listaclientes[i].get_text())
         self.registrocli = self.registrocli + self.liscmb
@@ -390,7 +390,7 @@ class Restaurante():
         self.limpiarfac()
 
     def cargarreserva(self, widget):
-        self.idfactura = reservas.cargarreserva(self.lblfac, self.listareserva, self.treefacturas)
+        self.idfactura = reservas.cargarreserva(self.listareserva, self.treefacturas)
         self.listarcomandas(self.idfactura)
 
 
