@@ -125,7 +125,6 @@ class Restaurante():
 
 
 
-
         """ funciones servicios """
     def altaser(self, widget):
         self.servicio = self.entservicio.get_text()
