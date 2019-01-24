@@ -122,6 +122,7 @@ class Restaurante():
         self.listarmesas()
         self.iniciarsala()
         self.hoy = time.strftime("%d/%m/%Y")
+        print ('hola')
 
 
 
