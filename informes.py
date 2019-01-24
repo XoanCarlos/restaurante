@@ -70,8 +70,12 @@ def reportservicios():
         listado = servicios.mostrarservicios()
         for registro in listado:
             for i in range(3):
-                cser.drawString(x,y,str(registro[i]))
-                x = x + 220
+                if i == 2:
+                    cser.drawRightString(x,y,str(registro[i]))
+                    x = x + 220
+                else:
+                    cser.drawString(x, y, str(registro[i]))
+                    x = x + 220
             y = y -20
             x = 50
         cser.showPage()
@@ -101,8 +105,8 @@ def factura(idfactura):
         bbdd.cur.execute('select idventa, s.servicio, cantidad, s.precio from comandas c, servicios s where c.idfactura = ? and s.Id = c.idservicio', (idfactura,))
         listado = bbdd.cur.fetchall()
         bbdd.conexion.commit()
-        textlistado = 'Factura'
-        cser.drawString(255, 705, textlistado)
+        textlistado = 'Cod       Concepto                            Unidades                  Precio/unidad                                Total'
+        cser.drawString(50, 705, textlistado)
         cser.line(50, 700, 525, 700)
         x = 50
         y = 680
@@ -114,7 +118,7 @@ def factura(idfactura):
                     x = x + 40
                 else:
                     x = x + 120
-                    cser.drawString(x, y, str(registro[i]))
+                    cser.drawRightString(x, y, str(registro[i]))
 
 
                 var1 = int(registro[2])

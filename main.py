@@ -122,7 +122,7 @@ class Restaurante():
         self.listarmesas()
         self.iniciarsala()
         self.hoy = time.strftime("%d/%m/%Y")
-        print ('hola')
+
 
 
 
@@ -338,17 +338,23 @@ class Restaurante():
         datos.clear()
 
         if self.reservas['mesa1'] == 0 and self.entclifac.get_text() != '' and self.entcamfac.get_text() != '' and libre == 0:
+            datos.append(self.entclifac.get_text())
+            datos.append(self.entcamfac.get_text())
             self.entmesafac.set_text('1')
+            datos.append(self.entmesafac.get_text())
             self.entfechafac.set_text(self.hoy)
+            datos.append(self.entfechafac.get_text())
             self.entpago.set_text('NO')
+
             color = Gdk.color_parse('#FA8072')
             rgba = Gdk.RGBA.from_color(color)
             self.btnmesa1.override_background_color(0, rgba)
             self.reservas['mesa1'] = 1
             for i in range(4):
                 datos.append(self.listareserva[i].get_text())
-            datos.append('NO')
-            reservas.crearreserva(datos, 1, self.listfact)
+            #datos.append('NO')
+            print (datos)
+            reservas.crearreserva(datos, 1)
             listado = reservas.mostrarfacturas(1)
             self.listfact.clear()
             for registro in listado:
