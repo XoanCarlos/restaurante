@@ -82,7 +82,8 @@ class Restaurante():
                'on_treemesas_cursor_changed': self.cargarmesas, 'on_btnmodifmesa_clicked': self.modifmesa,
                'on_btnbajamesa_clicked': self.bajamesa, 'on_treefacturas_cursor_changed': self.cargarreserva,
                "on_btnmesa1_clicked": self.mesa1, 'on_btnmesa2_clicked': self.mesa2,
-               'on_btnaltacomanda_clicked': self.altacomanda, 'on_btnfactura_clicked': self.factura}
+               'on_btnaltacomanda_clicked': self.altacomanda, 'on_btnfactura_clicked': self.factura,
+               }
 
 
         """ label usados """
@@ -122,8 +123,6 @@ class Restaurante():
         self.listarmesas()
         self.iniciarsala()
         self.hoy = time.strftime("%d/%m/%Y")
-
-
 
 
         """ funciones servicios """
@@ -317,7 +316,7 @@ class Restaurante():
 #        reservas.cargarreserva(listacam, self.treecamareros, self.entcamfac)
 
     def limpiarfac(self):
-        self.lblfac.set_text('')
+
         for registro in self.listareserva:
             registro.set_text('')
 
@@ -327,7 +326,7 @@ class Restaurante():
         pagados = reservas.controlpagos(1)
 
         for registro in pagados:
-            if str(registro) == 'NO' or registro == None:
+            if str(registro) is 'NO':
                 libre = 1
         listado = reservas.mostrarfacturas(1)
         self.listfact.clear()
@@ -336,7 +335,7 @@ class Restaurante():
 
         datos = []
         datos.clear()
-
+        print (libre)
         if self.reservas['mesa1'] == 0 and self.entclifac.get_text() != '' and self.entcamfac.get_text() != '' and libre == 0:
             datos.append(self.entclifac.get_text())
             datos.append(self.entcamfac.get_text())
@@ -345,13 +344,14 @@ class Restaurante():
             self.entfechafac.set_text(self.hoy)
             datos.append(self.entfechafac.get_text())
             self.entpago.set_text('NO')
+            datos.append(self.entpago.get_text())
 
             color = Gdk.color_parse('#FA8072')
             rgba = Gdk.RGBA.from_color(color)
             self.btnmesa1.override_background_color(0, rgba)
             self.reservas['mesa1'] = 1
-            for i in range(4):
-                datos.append(self.listareserva[i].get_text())
+            #for i in range(4):
+            #    datos.append(self.listareserva[i].get_text())
             #datos.append('NO')
             print (datos)
             reservas.crearreserva(datos, 1)
@@ -431,13 +431,21 @@ class Restaurante():
         rgba = Gdk.RGBA.from_color(color)
         self.mesas[self.mesaactiva-1].override_background_color(0, rgba)
         reservas.pagado(self.idfactura)
+
+        self.limpiarfac()
+        self.anulareserva()
+        self.listarfacturas()
+
+    def listarfacturas(self):
         var = int(self.mesaactiva)
         listado = reservas.mostrarfacturas(var)
+        print (listado)
         self.listfact.clear()
         for registro in listado:
             self.listfact.append(registro)
-        self.anulareserva()
-        self.limpiarfac()
+
+
+
 
 
     def anulareserva(self):

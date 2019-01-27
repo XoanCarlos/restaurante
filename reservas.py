@@ -26,14 +26,17 @@ def cargarreserva(lista, treefactura):
     try:
         model, iter = treefactura.get_selection().get_selected()
         listres = []
-        for j in range(6):
-            listres.append(model.get_value(iter, j))
-        for i in range(6):
-            if i == 0:
-                var = str(listres[i])
-            lista[i].set_text(str(listres[i]))
-        return var
-    except:
+        if iter != None:
+            for j in range(6):
+                listres.append(model.get_value(iter, j))
+
+            for i in range(6):
+                if i == 0:
+                    var = str(listres[i])
+                lista[i].set_text(str(listres[i]))
+
+            return var
+    except ValueError:
         print('error carga reservaaa')
 
 def controlpagos(idmesa):
@@ -73,9 +76,8 @@ def listarcomandas(idfactura):
 def pagado(factura):
     try:
         valor = 'SI'
-        bbdd.cur.execute('update facturas set pagado = ? where id = ? ', (str(valor),str(factura)))
+        bbdd.cur.execute('update facturas set pagado = ? where id = ? ', (str(valor), str(factura)))
         bbdd.conexion.commit()
-
 
     except bbdd.sqlite3.OperationalError as e:
         print(e)
