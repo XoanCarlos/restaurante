@@ -36,7 +36,7 @@ def cargarreserva(lista, treefactura):
                 lista[i].set_text(str(listres[i]))
 
             return var
-    except ValueError:
+    except:
         print('error carga reservaaa')
 
 def controlpagos(idmesa):

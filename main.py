@@ -316,7 +316,8 @@ class Restaurante():
 #        reservas.cargarreserva(listacam, self.treecamareros, self.entcamfac)
 
     def limpiarfac(self):
-
+        self.entserfac.set_text('')
+        self.entcantidad.set_text('')
         for registro in self.listareserva:
             registro.set_text('')
 
@@ -335,7 +336,7 @@ class Restaurante():
 
         datos = []
         datos.clear()
-        print (libre)
+
         if self.reservas['mesa1'] == 0 and self.entclifac.get_text() != '' and self.entcamfac.get_text() != '' and libre == 0:
             datos.append(self.entclifac.get_text())
             datos.append(self.entcamfac.get_text())
@@ -443,8 +444,6 @@ class Restaurante():
         self.listfact.clear()
         for registro in listado:
             self.listfact.append(registro)
-
-
 
 
 
