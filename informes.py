@@ -81,7 +81,7 @@ def reportservicios():
         cser.showPage()
         cser.save()
         dir = os.getcwd()
-        os.system('/usr/bin/xdg-open ' + dir + '/servicios.pdf')
+        os.system('sudo /usr/bin/xdg-open ' + dir + '/servicios.pdf')
 
     except:
         print('error en informe')
@@ -144,7 +144,7 @@ def factura(idfactura):
         cser.showPage()
         cser.save()
         dir = os.getcwd()
-        os.system('/usr/bin/xdg-open ' + dir + '/' + str(idfactura) + '.pdf')
+        os.system('sudo /usr/bin/xdg-open ' + dir + '/' + str(idfactura) + '.pdf')
 
 
     except bbdd.sqlite3.OperationalError as e:
