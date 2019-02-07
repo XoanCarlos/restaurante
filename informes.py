@@ -1,5 +1,5 @@
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A6, A4
 import os
 import servicios
 import bbdd
@@ -51,6 +51,7 @@ def pie(cser):
         print('erros pie')
 
 def reportservicios():
+
     """ Listado de servicios ofrecidos
 
         Este módulo genera un listado del codigo, nombre del servidio y precios que
@@ -59,7 +60,7 @@ def reportservicios():
     """
 
     try:
-        cser = canvas.Canvas('servicios.pdf', pagesize=A4)
+        cser = canvas.Canvas('servicios.pdf', pagesize=A6)
         cabecera(cser)
         pie(cser)
         textlistado = 'LISTADO DE SERVICIOS'
@@ -81,7 +82,7 @@ def reportservicios():
         cser.showPage()
         cser.save()
         dir = os.getcwd()
-        os.system('sudo /usr/bin/xdg-open ' + dir + '/servicios.pdf')
+        os.system('/usr/bin/xdg-open ' + dir + '/servicios.pdf')
 
     except:
         print('error en informe')
@@ -144,7 +145,7 @@ def factura(idfactura):
         cser.showPage()
         cser.save()
         dir = os.getcwd()
-        os.system('sudo /usr/bin/xdg-open ' + dir + '/' + str(idfactura) + '.pdf')
+        os.system('/usr/bin/xdg-open ' + dir + '/' + str(idfactura) + '.pdf')
 
 
     except bbdd.sqlite3.OperationalError as e:

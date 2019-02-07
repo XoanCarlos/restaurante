@@ -1,9 +1,9 @@
 import sqlite3
 
 
-
 try:
     """ datos conexion """
+
     bbdd = 'restaurante.sqlite'
     conexion = sqlite3.connect(bbdd)
     cur = conexion.cursor()

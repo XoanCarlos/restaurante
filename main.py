@@ -381,7 +381,7 @@ class Restaurante():
 
         if self.reservas['mesa2'] == 0 and self.entclifac.get_text() != '' and self.entcamfac.get_text() != '' and libre == 0:
             self.entmesafac.set_text('2')
-            self.entfechafac.set_text(self.hoy)
+            self.entfechafac.s.gnome.orget_text(self.hoy)
             color = Gdk.color_parse('#FA8072')
             rgba = Gdk.RGBA.from_color(color)
             self.btnmesa2.override_background_color(0, rgba)
