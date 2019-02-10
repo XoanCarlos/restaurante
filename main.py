@@ -46,9 +46,7 @@ class Restaurante():
         self.entserfac = b.get_object('entserfac')
         self.entcantidad = b.get_object('entcantidad')
         self.entpago = b.get_object('entpago')
-
-
-
+        
         """ widgets liststores and treeviews 
         
         """
